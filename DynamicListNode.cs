@@ -1,4 +1,6 @@
-﻿namespace DynamicLinkedList
+﻿using System;
+
+namespace DynamicLinkedList
 {
     public class DynamicListNode
     {
@@ -20,10 +22,20 @@
             DynamicListNode Current = this;
             while (Current != null)
             {
-                if (Current.Key == key) { return (Current); }
+                if (Current.Key == key) return (Current);
                 Current = Current.Next;
             }
             return null;
+        }
+
+        public void Set(dynamic key, dynamic val)
+        {
+            DynamicListNode Current = this;
+            while (Current != null)
+            {
+                if (Current.Key == key) { Current.Val = val; break; }
+                Current = Current.Next;
+            }
         }
 
         public DynamicListNode GetByIndex(int index)
@@ -32,7 +44,7 @@
             DynamicListNode Current = this;
             while (Current != null)
             {
-                if (i == index) { return Current; }
+                if (i == index) return Current;
                 i++; Current = Current.Next;
             }
             return null;
@@ -49,10 +61,7 @@
         public void AddToEnd(dynamic key = null, dynamic val = null)
         {
             DynamicListNode Current = this;
-            while (Current.Next != null)
-            {
-                Current = Current.Next;
-            }
+            while (Current.Next != null) Current = Current.Next;
             Current.Next = new DynamicListNode(key, val, null, Current);
         }
     }
