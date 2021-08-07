@@ -27,6 +27,7 @@ namespace DynamicLinkedList
                 Current = Current.Next;
             }
         }
+
         public DynamicListNode GetByKey(dynamic key)
         {
             DynamicListNode Current = this;
@@ -62,6 +63,11 @@ namespace DynamicLinkedList
 
         public void Add(dynamic key = null, dynamic val = null)
         {
+            if(this.Key == null && this.Val == null)
+            {
+                this.Key = key; this.Val = val; return;
+            }
+
             dynamic HeadVals = (this.Key, this.Val, this.Next);
             DynamicListNode Head = new DynamicListNode(HeadVals.Item1, HeadVals.Item2, HeadVals.Item3);
             DynamicListNode NewNode = new DynamicListNode(key, val, Head);
